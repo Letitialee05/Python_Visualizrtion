@@ -1,0 +1,63 @@
+import csv
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+#讀取csv檔案
+raw_df = pd.read_csv("combined_csv.csv", encoding="utf-8")
+#print(raw_df.dtypes)  #確定資料型態
+
+#刪除有資料為空的row
+raw_df = raw_df.dropna()
+
+
+#增加一欄將交易年月日轉換成交易年
+raw_df["交易年"] = raw_df["交易年月日"]//10000
+
+#增加一欄單價元坪,從平方公尺換為坪
+raw_df["單價元坪"] = raw_df["單價元平方公尺"]*3.30579
+
+#取得每年的單價元坪
+price107_df= raw_df.loc[raw_df["交易年"] == 107,["單價元坪"]]
+price108_df= raw_df.loc[raw_df["交易年"] == 108,["單價元坪"]]
+price109_df= raw_df.loc[raw_df["交易年"] == 109,["單價元坪"]]
+price110_df= raw_df.loc[raw_df["交易年"] == 110,["單價元坪"]]
+price111_df= raw_df.loc[raw_df["交易年"] == 111,["單價元坪"]]
+price112_df= raw_df.loc[raw_df["交易年"] == 112,["單價元坪"]]
+price113_df= raw_df.loc[raw_df["交易年"] == 113,["單價元坪"]]
+
+#計算每年單價元坪的平均
+mean107 = price107_df["單價元坪"].mean()
+mean108 = price108_df["單價元坪"].mean()
+mean109 = price109_df["單價元坪"].mean()
+mean110 = price110_df["單價元坪"].mean()
+mean111 = price111_df["單價元坪"].mean()
+mean112 = price112_df["單價元坪"].mean()
+mean113 = price113_df["單價元坪"].mean()
+
+#將數值寫入csv
+with open ("mean.csv","w",newline="",encoding = "utf-8") as file:
+    writer = csv.writer(file)
+    writer.writerow(["交易年","單價元坪"])
+    writer.writerow([107,int(mean107)])
+    writer.writerow([108,int(mean108)])
+    writer.writerow([109,int(mean109)])
+    writer.writerow([110,int(mean110)])
+    writer.writerow([111,int(mean111)])
+    writer.writerow([112,int(mean112)])
+    writer.writerow([113,int(mean113)])
+
+#讀取csv檔案
+data = pd.read_csv("mean.csv")
+
+plt.rcParams["font.family"] = "Microsoft JhengHei"  #使用微軟正黑體
+
+#取得x軸及y軸資料
+plt.plot(data["交易年"],data["單價元坪"]) 
+
+plt.grid(axis = "y") #設定格線
+
+plt.xlabel("年") #設定X軸文字
+plt.title("桃園市預售屋價格波動") #設定標題
+
+plt.show()
