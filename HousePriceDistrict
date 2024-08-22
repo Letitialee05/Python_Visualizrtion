@@ -1,0 +1,195 @@
+import csv
+import pandas as pd
+import matplotlib.pyplot as plt
+
+#讀取csv檔案
+raw_df = pd.read_csv("combined_csv.csv", encoding="utf-8")
+#print(raw_df.dtypes)  #確定資料型態
+
+#刪除有資料為空的row
+raw_df = raw_df.dropna()
+
+
+#增加一欄將交易年月日轉換成交易年
+raw_df["交易年"] = raw_df["交易年月日"]//10000
+
+#增加一欄單價元坪,從平方公尺換為坪
+raw_df["單價元坪"] = raw_df["單價元平方公尺"]*3.30579
+
+
+#取得每年每區的單價元坪
+price109_桃園區_df= raw_df.loc[(raw_df["交易年"] == 109) & (raw_df["鄉鎮市區"] == "桃園區"),["鄉鎮市區","單價元坪"]]
+price109_八德區_df= raw_df.loc[(raw_df["交易年"] == 109) & (raw_df["鄉鎮市區"] == "八德區"),["鄉鎮市區","單價元坪"]]
+price109_中壢區_df= raw_df.loc[(raw_df["交易年"] == 109) & (raw_df["鄉鎮市區"] == "中壢區"),["鄉鎮市區","單價元坪"]]
+price109_平鎮區_df= raw_df.loc[(raw_df["交易年"] == 109) & (raw_df["鄉鎮市區"] == "平鎮區"),["鄉鎮市區","單價元坪"]]
+price109_蘆竹區_df= raw_df.loc[(raw_df["交易年"] == 109) & (raw_df["鄉鎮市區"] == "蘆竹區"),["鄉鎮市區","單價元坪"]]
+price109_大園區_df= raw_df.loc[(raw_df["交易年"] == 109) & (raw_df["鄉鎮市區"] == "大園區"),["鄉鎮市區","單價元坪"]]
+price109_龜山區_df= raw_df.loc[(raw_df["交易年"] == 109) & (raw_df["鄉鎮市區"] == "龜山區"),["鄉鎮市區","單價元坪"]]
+
+price110_桃園區_df= raw_df.loc[(raw_df["交易年"] == 110) & (raw_df["鄉鎮市區"] == "桃園區"),["鄉鎮市區","單價元坪"]]
+price110_八德區_df= raw_df.loc[(raw_df["交易年"] == 110) & (raw_df["鄉鎮市區"] == "八德區"),["鄉鎮市區","單價元坪"]]
+price110_中壢區_df= raw_df.loc[(raw_df["交易年"] == 110) & (raw_df["鄉鎮市區"] == "中壢區"),["鄉鎮市區","單價元坪"]]
+price110_平鎮區_df= raw_df.loc[(raw_df["交易年"] == 110) & (raw_df["鄉鎮市區"] == "平鎮區"),["鄉鎮市區","單價元坪"]]
+price110_蘆竹區_df= raw_df.loc[(raw_df["交易年"] == 110) & (raw_df["鄉鎮市區"] == "蘆竹區"),["鄉鎮市區","單價元坪"]]
+price110_大園區_df= raw_df.loc[(raw_df["交易年"] == 110) & (raw_df["鄉鎮市區"] == "大園區"),["鄉鎮市區","單價元坪"]]
+price110_龜山區_df= raw_df.loc[(raw_df["交易年"] == 110) & (raw_df["鄉鎮市區"] == "龜山區"),["鄉鎮市區","單價元坪"]]
+
+price111_桃園區_df= raw_df.loc[(raw_df["交易年"] == 111) & (raw_df["鄉鎮市區"] == "桃園區"),["鄉鎮市區","單價元坪"]]
+price111_八德區_df= raw_df.loc[(raw_df["交易年"] == 111) & (raw_df["鄉鎮市區"] == "八德區"),["鄉鎮市區","單價元坪"]]
+price111_中壢區_df= raw_df.loc[(raw_df["交易年"] == 111) & (raw_df["鄉鎮市區"] == "中壢區"),["鄉鎮市區","單價元坪"]]
+price111_平鎮區_df= raw_df.loc[(raw_df["交易年"] == 111) & (raw_df["鄉鎮市區"] == "平鎮區"),["鄉鎮市區","單價元坪"]]
+price111_蘆竹區_df= raw_df.loc[(raw_df["交易年"] == 111) & (raw_df["鄉鎮市區"] == "蘆竹區"),["鄉鎮市區","單價元坪"]]
+price111_大園區_df= raw_df.loc[(raw_df["交易年"] == 111) & (raw_df["鄉鎮市區"] == "大園區"),["鄉鎮市區","單價元坪"]]
+price111_龜山區_df= raw_df.loc[(raw_df["交易年"] == 111) & (raw_df["鄉鎮市區"] == "龜山區"),["鄉鎮市區","單價元坪"]]
+
+price112_桃園區_df= raw_df.loc[(raw_df["交易年"] == 112) & (raw_df["鄉鎮市區"] == "桃園區"),["鄉鎮市區","單價元坪"]]
+price112_八德區_df= raw_df.loc[(raw_df["交易年"] == 112) & (raw_df["鄉鎮市區"] == "八德區"),["鄉鎮市區","單價元坪"]]
+price112_中壢區_df= raw_df.loc[(raw_df["交易年"] == 112) & (raw_df["鄉鎮市區"] == "中壢區"),["鄉鎮市區","單價元坪"]]
+price112_平鎮區_df= raw_df.loc[(raw_df["交易年"] == 112) & (raw_df["鄉鎮市區"] == "平鎮區"),["鄉鎮市區","單價元坪"]]
+price112_蘆竹區_df= raw_df.loc[(raw_df["交易年"] == 112) & (raw_df["鄉鎮市區"] == "蘆竹區"),["鄉鎮市區","單價元坪"]]
+price112_大園區_df= raw_df.loc[(raw_df["交易年"] == 112) & (raw_df["鄉鎮市區"] == "大園區"),["鄉鎮市區","單價元坪"]]
+price112_龜山區_df= raw_df.loc[(raw_df["交易年"] == 112) & (raw_df["鄉鎮市區"] == "龜山區"),["鄉鎮市區","單價元坪"]]
+
+price113_桃園區_df= raw_df.loc[(raw_df["交易年"] == 113) & (raw_df["鄉鎮市區"] == "桃園區"),["鄉鎮市區","單價元坪"]]
+price113_八德區_df= raw_df.loc[(raw_df["交易年"] == 113) & (raw_df["鄉鎮市區"] == "八德區"),["鄉鎮市區","單價元坪"]]
+price113_中壢區_df= raw_df.loc[(raw_df["交易年"] == 113) & (raw_df["鄉鎮市區"] == "中壢區"),["鄉鎮市區","單價元坪"]]
+price113_平鎮區_df= raw_df.loc[(raw_df["交易年"] == 113) & (raw_df["鄉鎮市區"] == "平鎮區"),["鄉鎮市區","單價元坪"]]
+price113_蘆竹區_df= raw_df.loc[(raw_df["交易年"] == 113) & (raw_df["鄉鎮市區"] == "蘆竹區"),["鄉鎮市區","單價元坪"]]
+price113_大園區_df= raw_df.loc[(raw_df["交易年"] == 113) & (raw_df["鄉鎮市區"] == "大園區"),["鄉鎮市區","單價元坪"]]
+price113_龜山區_df= raw_df.loc[(raw_df["交易年"] == 113) & (raw_df["鄉鎮市區"] == "龜山區"),["鄉鎮市區","單價元坪"]]
+
+#計算每年單價元坪的平均
+mean109_桃園區 = price109_桃園區_df["單價元坪"].mean()
+mean109_八德區 = price109_八德區_df["單價元坪"].mean()
+mean109_中壢區 = price109_中壢區_df["單價元坪"].mean()
+mean109_平鎮區 = price109_平鎮區_df["單價元坪"].mean()
+mean109_蘆竹區 = price109_蘆竹區_df["單價元坪"].mean()
+mean109_大園區 = price109_大園區_df["單價元坪"].mean()
+mean109_龜山區 = price109_龜山區_df["單價元坪"].mean()
+
+mean110_桃園區 = price110_桃園區_df["單價元坪"].mean()
+mean110_八德區 = price110_八德區_df["單價元坪"].mean()
+mean110_中壢區 = price110_中壢區_df["單價元坪"].mean()
+mean110_平鎮區 = price110_平鎮區_df["單價元坪"].mean()
+mean110_蘆竹區 = price110_蘆竹區_df["單價元坪"].mean()
+mean110_大園區 = price110_大園區_df["單價元坪"].mean()
+mean110_龜山區 = price110_龜山區_df["單價元坪"].mean()
+
+mean111_桃園區 = price111_桃園區_df["單價元坪"].mean()
+mean111_八德區 = price111_八德區_df["單價元坪"].mean()
+mean111_中壢區 = price111_中壢區_df["單價元坪"].mean()
+mean111_平鎮區 = price111_平鎮區_df["單價元坪"].mean()
+mean111_蘆竹區 = price111_蘆竹區_df["單價元坪"].mean()
+mean111_大園區 = price111_大園區_df["單價元坪"].mean()
+mean111_龜山區 = price111_龜山區_df["單價元坪"].mean()
+
+mean112_桃園區 = price112_桃園區_df["單價元坪"].mean()
+mean112_八德區 = price112_八德區_df["單價元坪"].mean()
+mean112_中壢區 = price112_中壢區_df["單價元坪"].mean()
+mean112_平鎮區 = price112_平鎮區_df["單價元坪"].mean()
+mean112_蘆竹區 = price112_蘆竹區_df["單價元坪"].mean()
+mean112_大園區 = price112_大園區_df["單價元坪"].mean()
+mean112_龜山區 = price112_龜山區_df["單價元坪"].mean()
+
+mean113_桃園區 = price113_桃園區_df["單價元坪"].mean()
+mean113_八德區 = price113_八德區_df["單價元坪"].mean()
+mean113_中壢區 = price113_中壢區_df["單價元坪"].mean()
+mean113_平鎮區 = price113_平鎮區_df["單價元坪"].mean()
+mean113_蘆竹區 = price113_蘆竹區_df["單價元坪"].mean()
+mean113_大園區 = price113_大園區_df["單價元坪"].mean()
+mean113_龜山區 = price113_龜山區_df["單價元坪"].mean()
+
+#將數值寫入csv
+with open ("mean_district_桃園區.csv","w",newline="",encoding = "utf-8") as file:
+    writer = csv.writer(file)
+    writer.writerow(["交易年","單價元坪"])
+    writer.writerow([109,int(mean109_桃園區)])
+    writer.writerow([110,int(mean110_桃園區)])
+    writer.writerow([111,int(mean111_桃園區)])
+    writer.writerow([112,int(mean112_桃園區)])
+    writer.writerow([113,int(mean113_桃園區)])
+    
+with open ("mean_district_八德區.csv","w",newline="",encoding = "utf-8") as file:
+    writer = csv.writer(file)
+    writer.writerow(["交易年","單價元坪"])
+    writer.writerow([109,int(mean109_八德區)])
+    writer.writerow([110,int(mean110_八德區)])
+    writer.writerow([111,int(mean111_八德區)])
+    writer.writerow([112,int(mean112_八德區)])
+    writer.writerow([113,int(mean113_八德區)])
+    
+with open ("mean_district_中壢區.csv","w",newline="",encoding = "utf-8") as file:
+    writer = csv.writer(file)
+    writer.writerow(["交易年","單價元坪"])   
+    writer.writerow([109,int(mean109_中壢區)])
+    writer.writerow([110,int(mean110_中壢區)])
+    writer.writerow([111,int(mean111_中壢區)])
+    writer.writerow([112,int(mean112_中壢區)])
+    writer.writerow([113,int(mean113_中壢區)])
+   
+with open ("mean_district_平鎮區.csv","w",newline="",encoding = "utf-8") as file:
+    writer = csv.writer(file)
+    writer.writerow(["交易年","單價元坪"])
+    writer.writerow([109,int(mean109_平鎮區)])
+    writer.writerow([110,int(mean110_平鎮區)])
+    writer.writerow([111,int(mean111_平鎮區)])
+    writer.writerow([112,int(mean112_平鎮區)])
+    writer.writerow([113,int(mean113_平鎮區)])
+    
+with open ("mean_district_蘆竹區.csv","w",newline="",encoding = "utf-8") as file:
+    writer = csv.writer(file)
+    writer.writerow(["交易年","單價元坪"])
+    writer.writerow([109,int(mean109_蘆竹區)])
+    writer.writerow([110,int(mean110_蘆竹區)])
+    writer.writerow([111,int(mean111_蘆竹區)])
+    writer.writerow([112,int(mean112_蘆竹區)])
+    writer.writerow([113,int(mean113_蘆竹區)])
+    
+with open ("mean_district_大園區.csv","w",newline="",encoding = "utf-8") as file:
+    writer = csv.writer(file)
+    writer.writerow(["交易年","單價元坪"])
+    writer.writerow([109,int(mean109_大園區)])
+    writer.writerow([110,int(mean110_大園區)])
+    writer.writerow([111,int(mean111_大園區)])
+    writer.writerow([112,int(mean112_大園區)])
+    writer.writerow([113,int(mean113_大園區)])
+    
+with open ("mean_district_龜山區.csv","w",newline="",encoding = "utf-8") as file:
+    writer = csv.writer(file)
+    writer.writerow(["交易年","單價元坪"])
+    writer.writerow([109,int(mean109_龜山區)])
+    writer.writerow([110,int(mean110_龜山區)])
+    writer.writerow([111,int(mean111_龜山區)])
+    writer.writerow([112,int(mean112_龜山區)])
+    writer.writerow([113,int(mean113_龜山區)])
+
+#讀取各區csv檔案
+data_桃園區 = pd.read_csv("mean_district_桃園區.csv")
+data_八德區 = pd.read_csv("mean_district_八德區.csv")
+data_中壢區 = pd.read_csv("mean_district_中壢區.csv")
+data_平鎮區 = pd.read_csv("mean_district_平鎮區.csv")
+data_蘆竹區 = pd.read_csv("mean_district_蘆竹區.csv")
+data_大園區 = pd.read_csv("mean_district_大園區.csv")
+data_龜山區 = pd.read_csv("mean_district_龜山區.csv")
+
+
+plt.rcParams["font.family"] = "Microsoft JhengHei"  #使用微軟正黑體
+
+#取得x軸及y軸資料及加上label
+plt.plot(data_桃園區["交易年"], data_桃園區["單價元坪"], label="桃園區") 
+plt.plot(data_八德區["交易年"], data_八德區["單價元坪"], label="八德區")
+plt.plot(data_中壢區["交易年"], data_中壢區["單價元坪"], label="中壢區")
+plt.plot(data_平鎮區["交易年"], data_平鎮區["單價元坪"], label="平鎮區")
+plt.plot(data_蘆竹區["交易年"], data_蘆竹區["單價元坪"], label="蘆竹區")
+plt.plot(data_大園區["交易年"], data_大園區["單價元坪"], label="大園區")
+plt.plot(data_龜山區["交易年"], data_龜山區["單價元坪"], label="龜山區")
+
+
+plt.grid(axis = "y") #設定格線
+
+plt.xlabel("年") #設定X軸文字
+plt.title("桃園市各區預售屋價格波動") #設定標題
+#修改X軸刻度
+plt.xticks([109.0,109.5,110.0,110.5,111.0,111.5,112.0,112.5,113.0],[109,"",110,"",111,"",112,"",113])
+plt.legend(bbox_to_anchor=(1,1)) #產生圖例,且放置於圖表外
+plt.show()    
